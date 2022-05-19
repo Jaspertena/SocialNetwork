@@ -1,0 +1,1 @@
+//controller detailsfor Thoughts Route
