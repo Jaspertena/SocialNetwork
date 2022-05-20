@@ -1,11 +1,6 @@
 const { Schema, Types } = require('mongoose');
 
 
-var validateEmail = function(email) {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email)
-};
-
 const userSchema = new Schema(
       {
           id: {
@@ -48,8 +43,8 @@ const userSchema = new Schema(
           type: Schema.Types.ObjectId,
           ref: 'Users',
           },
-      ],
-       },
+      ]
+       })
 
 
       module.exports = userSchema;

@@ -86,7 +86,7 @@ Use the following guidelines to set up your models and API routes:
 
 **Schema Settings**:
 
-Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
+Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query. TODO: ask about how to do this. 
 
 ---
 
