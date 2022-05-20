@@ -1,8 +1,14 @@
 const { Schema, Types } = require('mongoose');
 
+
+var validateEmail = function(email) {
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email)
+};
+
 const userSchema = new Schema(
       {
-          Id: {
+          id: {
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId(),
           },
@@ -14,28 +20,36 @@ const userSchema = new Schema(
             trim: true,
             unique: true
           },
+        
           email: {
             type: String,
-            required: true,
-            default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
+            trim: true,
+            lowercase: true,
+            unique: true,
+            required: 'Email address is required',
+            validate: [validateEmail, 'Please fill a valid email address'],
+            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
           },
-          createdAt: {
-            type: Date,
-            default: Date.now,
-          },
-        },
-        {
           toJSON: {
             getters: true,
           },
           id: false,
-        }
-      );
-      
-      module.exports = assignmentSchema;
+       
 
-      export function validateEmail(email) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-      }
-      
+        thoughts: [
+            {
+            type: Schema.Types.ObjectId,
+            ref: 'Thoughts',
+            },
+        ],
+         
+        friends: [
+          {
+          type: Schema.Types.ObjectId,
+          ref: 'Users',
+          },
+      ],
+       },
+
+
+      module.exports = userSchema;
