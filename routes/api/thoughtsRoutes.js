@@ -5,4 +5,4 @@ const {
   createThoughts,
   updateThoughts,
   deleteThoughts,
-} = require('../../controllers/thoughtsController.js');
+} = require('../../controllers/ThoughtsController.js');
