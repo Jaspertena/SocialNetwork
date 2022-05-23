@@ -15,7 +15,6 @@ const ReactionSchema = new Schema({
              
         toJSON: {
           getters: true,
-    
         id: false,
       },
       }, 
@@ -29,6 +28,7 @@ const ReactionSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+  }
 )
 
 const ThoughtsSchema = new Schema(
@@ -45,22 +45,28 @@ const ThoughtsSchema = new Schema(
             default: Date.now,
         },
      
-          toJSON: {
-            getters: true,
-      
-          id: false,
-        },
 //(The user that created this thought)
     username: {
             type: String,
             required: true,
     },
        
-      reactions: [
-       { type: Schema.Types.ObjectId,
-        ref: 'reactionsSchema',}
+      reactions: [ ReactionSchema
     ]
+     },
+     {
+       toJSON: {
+         virtuals: true,
+         getters: true,
+       },
+       id: false,
+     }
+     )
+
+     ThoughtsSchema.virtual("reactionCount").get(function(){
+       return this.reactions.length
      })
 
+    const Thoughts = model("Thoughts", ThoughtsSchema)
 
-    module.exports = ThoughtsSchema;
+    module.exports = Thoughts
