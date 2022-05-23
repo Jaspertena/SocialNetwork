@@ -1,6 +1,6 @@
 # SocialNetwork
 
-Social Network has become an intrucial parts of modern society. It is a major tool for most business as well as how many people stay in touch with the world around them. This project provides the back end start to building a social networking site.   Insomia app is used to confirm the database and file structure within MongoDB. The
+Social Network has become a crucial part of modern society. It is a major tool for most businesses as well as how many people stay in touch with the world around them. This project provides the back end start to building a social networking site.   Insomnia app is used to confirm the database and file structure within MongoDB.
 
 # Resources
 - [Express package](https://www.npmjs.com/package/express)
